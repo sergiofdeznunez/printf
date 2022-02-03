@@ -3,76 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snunez <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 11:12:10 by snunez            #+#    #+#             */
-/*   Updated: 2021/03/31 13:30:22 by snunez           ###   ########.fr       */
+/*   Created: 2022/02/02 14:26:41 by snunez            #+#    #+#             */
+/*   Updated: 2022/02/03 12:35:47 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Libft/libft.h"
 #include "ft_printf.h"
 
-void	ft_tratar_nbs(const char *format, int pos)
+int ft_print_arg(char type, va_list _arg)
 {
-	long int	nb;
-
-
+	if (type == 'c')
+		ft_printchar(_arg);
+	else if (type == 's')
+		ft_print_str(_arg);
+	else if (type == 'p') 
+		ft_print_pointer(_arg);
+	/*else if (type == 'd');
+		ft_print_dec(_arg);
+	else if (type == 'i')
+		ft_print_int(_arg);
+	else if (type == 'u')
+		ft_print_int(_arg);
+	else if (type == 'x')
+		ft_print_(_arg);
+	else if (type == 'X')
+		ft_print_(_arg);*/
+	else if (type == '%')
+		write(1, "%", 1);
+	return 0;
 }
 
-void	ft_tratar_flag(const char *format, int pos, t_flags flags)
-{
-	if (*(format + pos) == '-')
-		flags.minus = 1;
-	if (*(format + pos) == '+')
-		flags.plus = 1;
-	if (*(format + pos) == ' ')
-		flags.space = 1;
-	if (*(format + pos) == '#')
-		flags.alm = 1;
-	if (*(format + pos) == '*')
-		flags.width = 1;
-	if (*(format + pos) == '.')
-		flags.precision = 1;
-	if (*(format + pos) == '0')    //cuidado!!!
-		flags.zero = 1;
-	if (ft_isdigit(*(format + pos))) // cuidado!!!
-	{
-		ft_tratar_nbs();		
-	}     
-}
-
-void	analysis(const char *format, int pos, va_list args)
-{
-	t_flags	flags;
-
-	while (*format + pos)
-	{
-		if (ft_strchr(FLAGS, *(format + pos)) || ft_isdigit(*(format + pos)))
-			ft_tratar_flag(format, pos, flags);
-		else if (ft_strchr(DATA, *(format + pos)))
-			ft_print_data();
-		else if (*(format + pos) == '%')
-			write(1, '%', 1);
-		else
-			error();
-		pos++;
-	}
-}
 int	ft_printf(const char *format, ...)
 {
 	int	i;
 	va_list args;
 
+	i = 0;
+	if (!format)
+		return(0);
+	va_start(args, format);
 	while (*(format + i))
 	{
 		if (*(format + i) != '%')
-			write(1, *(format + i), 1);
+			write(1, (&*format + i), 1);
 		else
 		{
-			analysis (****En construccion ****);
+			i++;
+			ft_print_arg(*(format + i), args);
 		}
 		i++;
 	}
-	return ();
+	va_end(args);
+	return(1);
 }

@@ -3,33 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snunez <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:06:56 by snunez            #+#    #+#             */
-/*   Updated: 2021/03/31 13:30:26 by snunez           ###   ########.fr       */
+/*   Updated: 2022/01/31 12:46:08 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	FT_PRINTF_H
 # define FT_PRINTF_H
-# ifndef FLAGS
-#  define FLAGS "-+ #0*."
-# endif
-# ifndef DATA
-#  define DATA "cspdiuxX"
-# endif
 # include "Libft/libft.h"
 # include <unistd.h>
+# include <stdarg.h>
+# include <stdlib.h>
 
+int ft_print_arg(char type, va_list _arg);
 int ft_printf(const char *format, ...);
-typedef struct s_flags
-{
-	int	minus;
-	int	plus;
-	int	space;
-	int	alm;
-	int	zero;
-	int width;
-	int precision;
-}				t_flags;
+void ft_printchar(va_list arg);
+void ft_print_str(va_list arg);
+void ft_print_pointer(va_list arg);
 #endif
