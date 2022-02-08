@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:26:41 by snunez            #+#    #+#             */
-/*   Updated: 2022/02/03 12:35:47 by snunez           ###   ########.fr       */
+/*   Updated: 2022/02/08 12:46:58 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int ft_print_arg(char type, va_list _arg)
 		ft_print_str(_arg);
 	else if (type == 'p') 
 		ft_print_pointer(_arg);
-	/*else if (type == 'd');
-		ft_print_dec(_arg);
-	else if (type == 'i')
+	else if (type == 'd' || type == 'i')
 		ft_print_int(_arg);
 	else if (type == 'u')
-		ft_print_int(_arg);
-	else if (type == 'x')
+		ft_print_u_int(_arg);
+	/*else if (type == 'x')
 		ft_print_(_arg);
 	else if (type == 'X')
 		ft_print_(_arg);*/

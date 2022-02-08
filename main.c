@@ -4,6 +4,7 @@
 int main()
 {
 	//char *s = "testing";
-	ft_printf("ft_printf printed: %%\n");
-	printf("printf printed: %%\n");
+	unsigned int	test = 23487593245;
+	ft_printf("ft_printf printed: %u\n", test);
+	printf("   printf printed: %u\n", test);
 }
