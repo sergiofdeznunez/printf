@@ -6,7 +6,7 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:06:56 by snunez            #+#    #+#             */
-/*   Updated: 2022/02/08 12:49:04 by snunez           ###   ########.fr       */
+/*   Updated: 2022/02/11 12:35:46 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-int		ft_print_arg(char type, va_list _arg);
+size_t	ft_print_arg(char type, size_t len, va_list _arg);
 int		ft_printf(const char *format, ...);
-void	ft_printchar(va_list arg);
-void	ft_print_str(va_list arg);
-void	ft_print_pointer(va_list arg);
-void	ft_print_int(va_list arg);
-void	ft_print_u_int(va_list arg);
+size_t	ft_printchar(va_list arg, size_t len);
+size_t	ft_print_str(va_list arg, size_t len);
+size_t	ft_print_pointer(va_list arg, size_t len);
+size_t	ft_print_int(va_list arg, size_t len);
+size_t	ft_print_u_int(va_list arg, size_t len);
+size_t	ft_print_hexamin(va_list arg, size_t len);
+size_t	ft_print_hexamax(va_list arg, size_t len);
 #endif

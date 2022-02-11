@@ -6,53 +6,56 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:26:41 by snunez            #+#    #+#             */
-/*   Updated: 2022/02/08 12:46:58 by snunez           ###   ########.fr       */
+/*   Updated: 2022/02/11 14:13:36 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+//#include <stdio.h>
 
-int ft_print_arg(char type, va_list _arg)
+size_t ft_print_arg(char type, size_t len, va_list _arg)
 {
 	if (type == 'c')
-		ft_printchar(_arg);
+		return(ft_printchar(_arg, len));
 	else if (type == 's')
-		ft_print_str(_arg);
+		return(ft_print_str(_arg, len));
 	else if (type == 'p') 
-		ft_print_pointer(_arg);
+		return(ft_print_pointer(_arg, len));
 	else if (type == 'd' || type == 'i')
-		ft_print_int(_arg);
+		return(ft_print_int(_arg, len));
 	else if (type == 'u')
-		ft_print_u_int(_arg);
-	/*else if (type == 'x')
-		ft_print_(_arg);
+		return(ft_print_u_int(_arg, len));
+	else if (type == 'x')
+		return(ft_print_hexamin(_arg, len));
 	else if (type == 'X')
-		ft_print_(_arg);*/
+		return(ft_print_hexamax(_arg, len));
 	else if (type == '%')
-		write(1, "%", 1);
+		len += write(1, "%", 1);
 	return 0;
 }
 
 int	ft_printf(const char *format, ...)
 {
 	int	i;
+	size_t len;
 	va_list args;
 
 	i = 0;
+	len = 0;
 	if (!format)
-		return(0);
+		return(len);
 	va_start(args, format);
 	while (*(format + i))
 	{
 		if (*(format + i) != '%')
-			write(1, (&*format + i), 1);
+			len += write(1, (&*format + i), 1);
 		else
 		{
 			i++;
-			ft_print_arg(*(format + i), args);
+			len = ft_print_arg(*(format + i), len, args);
 		}
 		i++;
 	}
 	va_end(args);
-	return(1);
+	return(len);
 }
