@@ -6,14 +6,13 @@
 /*   By: snunez <snunez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:26:41 by snunez            #+#    #+#             */
-/*   Updated: 2022/02/11 14:13:36 by snunez           ###   ########.fr       */
+/*   Updated: 2022/02/17 13:23:18 by snunez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//#include <stdio.h>
 
-size_t ft_print_arg(char type, size_t len, va_list _arg)
+size_t ft_print_arg(char type, size_t *len, va_list _arg)
 {
 	if (type == 'c')
 		return(ft_printchar(_arg, len));
@@ -30,8 +29,8 @@ size_t ft_print_arg(char type, size_t len, va_list _arg)
 	else if (type == 'X')
 		return(ft_print_hexamax(_arg, len));
 	else if (type == '%')
-		len += write(1, "%", 1);
-	return 0;
+		*len += write(1, "%", 1);
+	return *len;
 }
 
 int	ft_printf(const char *format, ...)
@@ -52,7 +51,7 @@ int	ft_printf(const char *format, ...)
 		else
 		{
 			i++;
-			len = ft_print_arg(*(format + i), len, args);
+			len = ft_print_arg(*(format + i), &len, args);
 		}
 		i++;
 	}
