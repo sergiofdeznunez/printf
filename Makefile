@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: snunez <snunez@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/18 16:50:27 by snunez            #+#    #+#              #
+#    Updated: 2022/02/18 16:50:31 by snunez           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = ft_printf.c logic.c 
+SRCS = ft_printf.c logic.c logic2.c
 
-SRCS_TEST = ft_printf.c logic.c main.c
+SRCS_TEST = ft_printf.c logic.c logic2.c main.c
 
 OBJS = $(SRCS:.c=.o)
 
